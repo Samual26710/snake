@@ -1,28 +1,62 @@
 {
-    "tasks": [
-        {
-            "type": "cppbuild",
-            "label": "C/C++: gcc.exe 生成活动文件",
-            "command": "D:\\mingw64\\bin\\gcc.exe",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "D:\\mingw64\\bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "调试器生成的任务。"
-        }
-    ],
-    "version": "2.0.0"
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: gcc.exe 生成活动文件",
+			"command": "D:\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+			],
+			"options": {
+				"cwd": "D:\\mingw64\\bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "调试器生成的任务。"
+		},
+		{
+			"label": "Build RL snake",
+			"type": "shell",
+			"command": "D:\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"强化学习版本\\snake_oj_rl.c",
+				"-I强化学习版本",
+				"-o",
+				"强化学习版本\\snake_oj_rl.exe"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Build RL snake pushd",
+			"type": "shell",
+			"command": "Push-Location \"强化学习版本\"; & \"D:\\mingw64\\bin\\gcc.exe\" snake_oj_rl.c -I. -o snake_oj_rl.exe; Pop-Location",
+			"isBackground": false
+		},
+		{
+			"label": "Build RL exact cmd",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"chcp 65001>nul && cd /d c:\\Users\\86501\\Desktop\\snake-session\\强化学习版本 && D:\\mingw64\\bin\\gcc.exe -fdiagnostics-color=always -g snake_oj_rl.c -I. -o snake_oj_rl.exe"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Build rl_version pushd",
+			"type": "shell",
+			"command": "Push-Location \"rl_version\"; & \"D:\\mingw64\\bin\\gcc.exe\" snake_oj_rl.c -I. -o snake_oj_rl.exe; Pop-Location",
+			"isBackground": false
+		}
+	],
+	"version": "2.0.0"
 }

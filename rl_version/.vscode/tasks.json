@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build RL snake local",
+			"type": "shell",
+			"command": "D:\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"snake_oj_rl.c",
+				"-I.",
+				"-o",
+				"snake_oj_rl.exe"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Build rl_version local",
+			"type": "shell",
+			"command": "D:\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"snake_oj_rl.c",
+				"-I.",
+				"-o",
+				"snake_oj_rl.exe"
+			],
+			"isBackground": false
+		}
+	]
+}

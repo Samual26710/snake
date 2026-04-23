@@ -1,0 +1,5 @@
+{
+  "completed_episodes": 100000,
+  "epsilon": 0.01,
+  "next_n": null
+}
