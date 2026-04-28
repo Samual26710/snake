@@ -10,6 +10,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "q_table.h"
@@ -40,6 +41,10 @@ static const int dcs[4]        = { 0,-1, 0, 1};
 static const char dir_chars[4] = {'W','A','S','D'};
 
 #define STARVATION_LIMIT 12
+
+static int bfs_to_tail(void);
+static int find_safe_move(void);
+static int find_desperate_tail_move(void);
 
 static char infer_base_cell(int r, int c)
 {
@@ -277,6 +282,51 @@ static int is_food_reachable(void)
 	}
 
 	return 0;
+}
+
+static int is_food_topologically_blocked(void)
+{
+	static int q_r[ROWS * COLS], q_c[ROWS * COLS];
+	int visited[ROWS][COLS];
+	int i, j;
+	int qh, qt;
+
+	if (food_r < 0 || food_c < 0) return 0;
+
+	memset(visited, 0, sizeof(visited));
+	for (i = 0; i < ROWS; i++)
+		for (j = 0; j < COLS; j++)
+			if (map[i][j] == '#' || map[i][j] == 'O')
+				visited[i][j] = 1;
+
+	if (visited[sr[0]][sc[0]] || visited[food_r][food_c])
+		return 1;
+
+	qh = 0;
+	qt = 0;
+	visited[sr[0]][sc[0]] = 1;
+	q_r[qt] = sr[0];
+	q_c[qt] = sc[0];
+	qt++;
+
+	while (qh < qt) {
+		int r = q_r[qh], c = q_c[qh];
+		int d;
+		qh++;
+		if (r == food_r && c == food_c) return 0;
+		for (d = 0; d < 4; d++) {
+			int nr = r + drs[d];
+			int nc = c + dcs[d];
+			if (nr < 0 || nr >= ROWS || nc < 0 || nc >= COLS) continue;
+			if (visited[nr][nc]) continue;
+			visited[nr][nc] = 1;
+			q_r[qt] = nr;
+			q_c[qt] = nc;
+			qt++;
+		}
+	}
+
+	return 1;
 }
 
 static int flood_count(int start_r, int start_c, int tail_stays)
@@ -882,6 +932,21 @@ static int should_delay_food_for_density(void)
 	return !current_has_path(food_r, food_c, sr[snake_len - 1], sc[snake_len - 1], 1);
 }
 
+static int select_blocked_food_terminal_move(void)
+{
+	int d;
+
+	if (!is_food_topologically_blocked())
+		return -1;
+
+	for (d = 0; d < 4; d++) {
+		if (drs[d] == -cur_dr && dcs[d] == -cur_dc)
+			return d;
+	}
+
+	return -1;
+}
+
 static int find_desperate_tail_move(void)
 {
 	int tail_r = sr[snake_len - 1], tail_c = sc[snake_len - 1];
@@ -1092,6 +1157,8 @@ int main(void)
 			d = special_empty_growth_move();
 			if (d < 0)
 				d = special_conflict_escape_move();
+			if (d < 0)
+				d = select_blocked_food_terminal_move();
 			if (d < 0)
 				d = select_q_move();
 

@@ -56,6 +56,42 @@
 			"type": "shell",
 			"command": "Push-Location \"rl_version\"; & \"D:\\mingw64\\bin\\gcc.exe\" snake_oj_rl.c -I. -o snake_oj_rl.exe; Pop-Location",
 			"isBackground": false
+		},
+		{
+			"label": "Build RL explicit",
+			"type": "shell",
+			"command": "D:\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"c:\\Users\\86501\\Desktop\\snake-session\\rl_version\\snake_oj_rl.c",
+				"-o",
+				"c:\\Users\\86501\\Desktop\\snake-session\\rl_version\\snake_oj_rl.exe"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Build RL temp explicit",
+			"type": "shell",
+			"command": "D:\\mingw64\\bin\\gcc.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"c:\\Users\\86501\\Desktop\\snake-session\\rl_version\\snake_oj_rl.c",
+				"-o",
+				"c:\\Users\\86501\\Desktop\\snake-session\\rl_version\\snake_oj_rl_temp.exe"
+			],
+			"isBackground": false
+		},
+		{
+			"label": "Build RL temp utf8",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"chcp 65001>nul && D:\\mingw64\\bin\\gcc.exe -fdiagnostics-color=always -g c:\\Users\\86501\\Desktop\\snake-session\\rl_version\\snake_oj_rl.c -o c:\\Users\\86501\\Desktop\\snake-session\\rl_version\\snake_oj_rl_temp.exe"
+			],
+			"isBackground": false
 		}
 	],
 	"version": "2.0.0"
