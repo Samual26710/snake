@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "PowerShell(gh repo view Gostyan/docx-skill-4-cn-paper --json name,description,files)",
+      "PowerShell(git clone https://github.com/Gostyan/docx-skill-4-cn-paper.git $env:TEMP\\\\docx-skill-4-cn-paper)",
+      "PowerShell(curl.exe -sL \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents\" 2>$null | Select-Object -First 50)",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/example\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \\(Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/readme\" -ErrorAction Stop\\) | Select-Object -ExpandProperty content | ForEach-Object { [System.Text.Encoding]::UTF8.GetString\\([System.Convert]::FromBase64String\\($_\\)\\) })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \\(Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/SKILL.md\" -ErrorAction Stop\\) | Select-Object -ExpandProperty content | ForEach-Object { [System.Text.Encoding]::UTF8.GetString\\([System.Convert]::FromBase64String\\($_\\)\\) })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts/office\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts/templates\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts/office/helpers\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts/office/schemas\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts/office/validators\" -ErrorAction Stop | ForEach-Object { $_.name })",
+      "PowerShell(Test-Path *)",
+      "PowerShell(New-Item *)",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $dirs = @\\('docx-editor-cn/scripts/office/schemas/ISO-IEC29500-4_2016', 'docx-editor-cn/scripts/office/schemas/ecma', 'docx-editor-cn/scripts/office/schemas/mce', 'docx-editor-cn/scripts/office/schemas/microsoft'\\); foreach \\($d in $dirs\\) { Write-Output \"=== $d ===\"; try { $files = Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/$d\" -ErrorAction Stop; foreach \\($f in $files\\) { Write-Output \"  $\\($f.name\\)\" } } catch { Write-Output \"  \\(empty or not found\\)\" } })",
+      "PowerShell([Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $files = Invoke-RestMethod -Uri \"https://api.github.com/repos/Gostyan/docx-skill-4-cn-paper/contents/docx-editor-cn/scripts/office/schemas/ecma/fouth-edition\" -ErrorAction Stop; foreach \\($f in $files\\) { Write-Output $f.name })",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(pandoc *)",
+      "PowerShell(python --version 2>&1)",
+      "PowerShell(& \"C:\\\\Users\\\\86501\\\\Desktop\\\\snake-session\\\\.venv\\\\Scripts\\\\python.exe\" \"C:\\\\Users\\\\86501\\\\Desktop\\\\snake-session\\\\_read_doc.py\" 2>&1)",
+      "PowerShell(npm *)",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(cd \"C:\\\\Users\\\\86501\\\\Desktop\\\\snake-session\\\\code_ver\"; Select-String -Path \"game_v2.c\" -Pattern \"static int find_best_scored_direction|static void compute_food_distances|static int decide_regular_move|food_dist\\\\[\" | ForEach-Object { \"$\\($_.LineNumber\\): $\\($_.Line.Trim\\(\\)\\)\" })"
+    ]
+  }
+}

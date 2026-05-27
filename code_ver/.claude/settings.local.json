@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(gcc *)",
+      "PowerShell($env:Path -split ';' | Where-Object { $_ -match 'gcc|mingw|msys|cygwin' })",
+      "PowerShell(Get-Item *)",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\86501\\\\Desktop\\\\snake-session\\\\code_ver\\\\game_oj_ver.c\" | Select-Object -First 40\\) -join \"`n\")"
+    ]
+  }
+}
